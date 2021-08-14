@@ -26,7 +26,7 @@ namespace aec_webapi_entity_framework.Controllers
         public async Task<IActionResult> Index()
         {
             // var dbContexto = _context.Carros.Where(c => c.Nome == "Gol");
-            var dbContexto = _context.Carros
+            var dbContexto = _context.Carros;
             return StatusCode(200, await dbContexto.ToListAsync());
         }
 
