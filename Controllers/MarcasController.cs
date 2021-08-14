@@ -11,50 +11,50 @@ using aec_webapi_entity_framework.Servicos;
 namespace aec_webapi_entity_framework.Controllers
 {
     [ApiController]
-    public class CarrosController : ControllerBase
+    public class MarcasController : ControllerBase
     {
         private readonly DbContexto _context;
 
-        public CarrosController(DbContexto context)
+        public MarcasController(DbContexto context)
         {
             _context = context;
         }
 
-        // GET: Carros
+        // GET: Marcas
         [HttpGet]
-        [Route("/carros")]
+        [Route("/marcas")]
         public async Task<IActionResult> Index()
         {
-            var dbContexto = _context.Carros;
+            var dbContexto = _context.Marcas;
             return StatusCode(200, await dbContexto.ToListAsync());
         }
 
         [HttpPost]
-        [Route("/carros")]
-        public async Task<IActionResult> Create([Bind("Id,Nome,Modelo,MarcaId,Ano")] Carro carro)
+        [Route("/marcas")]
+        public async Task<IActionResult> Create([Bind("Id,Nome")] Marca marca)
         {
-            _context.Add(carro);
+            _context.Add(marca);
             await _context.SaveChangesAsync();
-            return StatusCode(201, carro);
+            return StatusCode(201, marca);
         }
 
         [HttpPut]
-        [Route("/carros/{id}")]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Nome,Modelo,MarcaId,Ano")] Carro carro)
+        [Route("/marcas/{id}")]
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Nome")] Marca marca)
         {
-            if (id != carro.Id)
+            if (id != marca.Id)
             {
                 return NotFound();
             }
 
             try
             {
-                _context.Update(carro);
+                _context.Update(marca);
                 await _context.SaveChangesAsync();
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!CarroExists(carro.Id))
+                if (!MarcaExists(marca.Id))
                 {
                     return NotFound();
                 }
@@ -64,29 +64,29 @@ namespace aec_webapi_entity_framework.Controllers
                 }
             }
 
-            return StatusCode(200, carro);
+            return StatusCode(200, marca);
         }
 
         [HttpGet]
-        [Route("/carros/{id}")]
-        public async Task<Carro> Get(int id)
+        [Route("/marcas/{id}")]
+        public async Task<Marca> Get(int id)
         {
-            return await _context.Carros.FindAsync(id);
+            return await _context.Marcas.FindAsync(id);
         }
 
         [HttpDelete]
-        [Route("/carros/{id}")]
+        [Route("/marcas/{id}")]
         public async Task<IActionResult> Delete(int id)
         {
-            var carro = await _context.Carros.FindAsync(id);
-            _context.Carros.Remove(carro);
+            var marca = await _context.Marcas.FindAsync(id);
+            _context.Marcas.Remove(marca);
             await _context.SaveChangesAsync();
             return StatusCode(204);
         }
 
-        private bool CarroExists(int id)
+        private bool MarcaExists(int id)
         {
-            return _context.Carros.Any(e => e.Id == id);
+            return _context.Marcas.Any(e => e.Id == id);
         }
     }
 }
