@@ -25,12 +25,14 @@ namespace aec_webapi_entity_framework.Controllers
         [Route("/carros")]
         public async Task<IActionResult> Index()
         {
-            var dbContexto = _context.Carros;
+            // var dbContexto = _context.Carros.Where(c => c.Nome == "Gol");
+            var dbContexto = _context.Carros
             return StatusCode(200, await dbContexto.ToListAsync());
         }
 
         [HttpPost]
         [Route("/carros")]
+        [Route("/cars")]
         public async Task<IActionResult> Create([Bind("Id,Nome,Modelo,MarcaId,Ano")] Carro carro)
         {
             _context.Add(carro);
@@ -40,6 +42,7 @@ namespace aec_webapi_entity_framework.Controllers
 
         [HttpPut]
         [Route("/carros/{id}")]
+        [Route("/cars/{id}")]
         public async Task<IActionResult> Edit(int id, [Bind("Id,Nome,Modelo,MarcaId,Ano")] Carro carro)
         {
             if (id != carro.Id)

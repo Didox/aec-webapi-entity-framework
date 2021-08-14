@@ -15,7 +15,8 @@ namespace aec_webapi_entity_framework.Apresentacao
         return new List<string>() 
         {
           "/carros",
-          "/modelos"
+          "/modelos",
+          "/swagger"
         };
       }
     }

@@ -24,6 +24,7 @@ namespace aec_webapi_entity_framework.Models
     [Column("marca_id")]
     [Required]
     [ForeignKey("MarcaId")]
+    [JsonPropertyName("marca_id")]
     public int MarcaId { get; set; }
 
     [JsonIgnore]
