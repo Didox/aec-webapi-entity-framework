@@ -28,7 +28,7 @@
 # Comandos para migração:
 ``` bash
 dotnet tool install --global dotnet-ef
-dotnet ef migrations add ClienteAdd
+dotnet ef migrations add CarroAdd
 dotnet ef database update
 ```
 
@@ -37,13 +37,11 @@ dotnet ef database update
 dotnet tool install -g dotnet-aspnet-codegenerator
 ```
 
-# Gerando o scaffold de clientes
+# Gerando o scaffold de Carros
 ``` bash
-dotnet aspnet-codegenerator controller -name ClientesController -m Cliente -dc DbContexto --relativeFolderPath Controllers
+dotnet aspnet-codegenerator controller -name CarrosController -m Carro -dc DbContexto --relativeFolderPath Controllers
 
-dotnet aspnet-codegenerator controller -name AlunosController -m Aluno -dc DbContexto --relativeFolderPath Controllers
-
-dotnet aspnet-codegenerator controller -name PedidosController -m Pedido -dc DbContexto --relativeFolderPath Controllers
+dotnet aspnet-codegenerator controller -name MarcasController -m Marca -dc DbContexto --relativeFolderPath Controllers
 
 ```
 
